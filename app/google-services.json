@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "339223695970",
+    "project_id": "form-mocco",
+    "storage_bucket": "form-mocco.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339223695970:android:c33939d1a5c5189069773b",
+        "android_client_info": {
+          "package_name": "com.example.form"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxfb5XVlLXrD11FvWHF5K0GnWv2EHOLNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
