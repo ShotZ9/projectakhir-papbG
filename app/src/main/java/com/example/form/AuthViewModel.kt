@@ -2,11 +2,14 @@ package com.example.form
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class AuthViewModel(private val context: Context) : ViewModel(){
 //class AuthViewModel : ViewModel(){
@@ -141,6 +144,13 @@ class AuthViewModel(private val context: Context) : ViewModel(){
     // Retrieve the expiration time
     fun getExpirationTime(): Long {
         return sharedPreferences.getLong("expires_at", 0L) // Default is 0 if not set
+    }
+
+    private val _bitmaps = MutableStateFlow<List<Bitmap>>(emptyList())
+    val bitmaps = _bitmaps.asStateFlow()
+
+    fun onTakePhoto(bitmap: Bitmap) {
+        _bitmaps.value += bitmap
     }
 }
 

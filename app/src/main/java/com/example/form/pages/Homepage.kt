@@ -2,6 +2,7 @@ package com.example.form.pages
 
 import android.app.DatePickerDialog
 import android.widget.DatePicker
+import androidx.camera.core.Camera
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,18 +16,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
+import androidx.compose.material3.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import android.net.Uri
+import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -48,6 +42,9 @@ import com.example.form.ToDoViewModel
 import com.example.form.shared.Footer
 import com.example.form.shared.Header
 import java.util.Calendar
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.example.form.R
 
 @Composable
 fun HomePage(
@@ -84,8 +81,19 @@ fun HomePage(
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = { isDialogOpen = true }) {
-                Icon(Icons.Default.Add, contentDescription = "Add To-Do")
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                FloatingActionButton(onClick = { isDialogOpen = true }) {
+                    Icon(Icons.Default.Add, contentDescription = "Add To-Do")
+                }
+                Spacer(modifier = Modifier.height(16.dp)) // Add space between buttons
+                FloatingActionButton(onClick = {
+                    // Navigate to Camera screen
+                    navController.navigate("camera")
+                }) {
+                    Image(painter = painterResource(id = R.drawable.camera_icon), contentDescription = "Open Camera")
+                }
             }
         }
     ) { innerPadding ->

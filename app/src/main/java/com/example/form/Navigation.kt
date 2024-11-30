@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.form.pages.CameraPreview
 import com.example.form.pages.HomePage
 import com.example.form.pages.Login
 import com.example.form.pages.SignUp
@@ -22,6 +23,9 @@ fun Navigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel){
         }
         composable("homepage") {
             HomePage(modifier, navController, authViewModel)
+        }
+        composable("camera") {
+            CameraScreen(authViewModel)
         }
     })
 }

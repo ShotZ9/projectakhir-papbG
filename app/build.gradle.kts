@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.android) version "1.9.10"
     alias(libs.plugins.google.gms.google.services)
 }
 
@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.form"
-        minSdk = 34
+        minSdk = 33 // Menurunkan agar kompatibel dengan lebih banyak perangkat
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -41,7 +41,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.3" // Gunakan versi terbaru
     }
     packaging {
         resources {
@@ -51,7 +51,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -63,8 +62,19 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.auth.ktx)
-    implementation(libs.androidx.runtime.livedata)
     implementation(libs.firebase.firestore)
+
+    // Add Guava for ListenableFuture
+    implementation("com.google.guava:guava:31.1-android") // Versi stabil untuk Android
+
+    // CameraX dependencies
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.runtime.livedata)
+    implementation(libs.firebase.storage.ktx)
+
+    // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
